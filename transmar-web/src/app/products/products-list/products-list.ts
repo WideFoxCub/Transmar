@@ -41,7 +41,7 @@ export class ProductsList implements OnInit {
       },
       error: (err) => {
         console.error(err);
-        this.error = 'Nie udało się pobrać produktów';
+        this.error = 'The products failed to download';
         this.loading = false;
         this.cdr.detectChanges();
       }

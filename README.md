@@ -66,3 +66,4 @@ WEB is available on:
 
 \- ng serve -o --proxy-config proxy.conf.json
 
+\- `http://localhost:4200/`

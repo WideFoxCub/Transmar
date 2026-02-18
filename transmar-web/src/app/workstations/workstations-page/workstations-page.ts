@@ -32,7 +32,7 @@ export class WorkstationsPage implements OnInit {
 
     this.svc.getAll().subscribe({
       next: (data) => { this.items = data; this.loading = false; this.cdr.detectChanges(); },
-      error: (e) => { console.error(e); this.error = 'Nie udało się pobrać stanowisk'; this.loading = false; this.cdr.detectChanges(); }
+      error: (e) => { console.error(e); this.error = 'Failed to download positions'; this.loading = false; this.cdr.detectChanges(); }
     });
   }
 
@@ -54,7 +54,7 @@ export class WorkstationsPage implements OnInit {
   save(): void {
     const name = this.form.name.trim();
     const shortName = this.form.shortName.trim();
-    if (!name || !shortName) { this.error = 'Name i ShortName są wymagane'; this.cdr.detectChanges(); return; }
+    if (!name || !shortName) { this.error = 'Name and ShortName are required'; this.cdr.detectChanges(); return; }
 
     if (!this.editing) {
       this.svc.create({ name, shortName, opName: this.form.opName?.trim() || null, autoStart: this.form.autoStart }).subscribe({

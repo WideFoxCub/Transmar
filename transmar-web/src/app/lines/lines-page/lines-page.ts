@@ -45,7 +45,7 @@ export class LinesPage implements OnInit {
         this.selectedProductId = p.length ? p[0].productId : null;
         this.loadLines();
       },
-      error: (e) => this.fail('Nie udało się pobrać produktów', e)
+      error: (e) => this.fail('The products failed to download', e)
     });
   }
 
@@ -68,7 +68,7 @@ export class LinesPage implements OnInit {
         this.loading = false;
         this.cdr.detectChanges();
       },
-      error: (e) => this.fail('Nie udało się pobrać linii', e)
+      error: (e) => this.fail('Failed to retrieve the line', e)
     });
   }
 
@@ -92,7 +92,7 @@ export class LinesPage implements OnInit {
     const status = Number(this.form.status);
     const name = this.form.name.trim();
 
-    if (!pid) { this.error = 'Wybierz produkt'; this.cdr.detectChanges(); return; }
+    if (!pid) { this.error = 'Select a product'; this.cdr.detectChanges(); return; }
     if (!name) { this.error = 'Name is required'; this.cdr.detectChanges(); return; }
 
     if (!this.editing) {

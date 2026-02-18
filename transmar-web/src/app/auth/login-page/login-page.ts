@@ -29,7 +29,7 @@ export class LoginPage {
       },
       error: () => {
         this.loading = false;
-        this.error = 'Błędny login lub hasło';
+        this.error = 'Incorrect login or password';
       }
     });
   }

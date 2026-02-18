@@ -65,10 +65,10 @@ export class AllocationsPage implements OnInit {
 
             this.onProductChanged();
           },
-          error: (e) => this.fail('Nie udało się pobrać stanowisk', e)
+          error: (e) => this.fail('Failed to download positions', e)
         });
       },
-      error: (e) => this.fail('Nie udało się pobrać produktów', e)
+      error: (e) => this.fail('The products failed to download', e)
     });
   }
 
@@ -90,7 +90,7 @@ export class AllocationsPage implements OnInit {
         this.selectedLineId = lines.length ? lines[0].alassLineId : null;
         this.loadAllocations();
       },
-      error: (e) => this.fail('Nie udało się pobrać linii', e)
+      error: (e) => this.fail('Failed to retrieve the line', e)
     });
   }
 
@@ -113,7 +113,7 @@ export class AllocationsPage implements OnInit {
         this.loading = false;
         this.cdr.detectChanges();
       },
-      error: (e) => this.fail('Nie udało się pobrać alokacji', e)
+      error: (e) => this.fail('Failed to download allocation', e)
     });
   }
 
