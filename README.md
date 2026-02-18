@@ -59,10 +59,10 @@ Body:
 ```json
 
 { "username": "admin", "password": "admin" }
-
+```
 
 
 WEB is available on:
 
-ng serve -o --proxy-config proxy.conf.json
+\- ng serve -o --proxy-config proxy.conf.json
 
