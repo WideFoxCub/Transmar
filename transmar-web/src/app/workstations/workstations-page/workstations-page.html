@@ -1,0 +1,40 @@
+<h2>Workstations</h2>
+
+<div *ngIf="loading">Ładowanie...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error" border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Short</th>
+      <th>Name</th>
+      <th>AutoStart</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let w of items">
+      <td>{{ w.alwstationId }}</td>
+      <td>{{ w.shortName }}</td>
+      <td>{{ w.name }}</td>
+      <td>{{ w.autoStart }}</td>
+      <td>
+        <button (click)="edit(w)">Edit</button>
+        <button (click)="remove(w)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3>{{ editing ? 'Edit workstation' : 'New workstation' }}</h3>
+
+<label>Name: <input [(ngModel)]="form.name" /></label>
+<label style="margin-left: 12px;">ShortName: <input [(ngModel)]="form.shortName" /></label>
+<label style="margin-left: 12px;">OpName: <input [(ngModel)]="form.opName" /></label>
+<label style="margin-left: 12px;">AutoStart: <input type="checkbox" [(ngModel)]="form.autoStart" /></label>
+
+<button style="margin-left: 12px;" (click)="save()">{{ editing ? 'Save' : 'Create' }}</button>
+<button style="margin-left: 6px;" (click)="cancel()" *ngIf="editing">Cancel</button>

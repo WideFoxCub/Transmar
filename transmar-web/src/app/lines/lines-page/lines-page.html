@@ -1,0 +1,58 @@
+<h2>Assembly Lines</h2>
+
+<label>
+  Product:
+  <select [(ngModel)]="selectedProductId" (change)="loadLines()">
+    <option *ngFor="let p of products" [ngValue]="p.productId">{{ p.name }}</option>
+  </select>
+</label>
+
+<div *ngIf="loading">Ładowanie...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error" border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of lines">
+      <td>{{ l.alassLineId }}</td>
+      <td>{{ l.name }}</td>
+      <td>{{ l.status }}</td>
+      <td>
+        <button (click)="edit(l)">Edit</button>
+        <button (click)="remove(l)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3>{{ editing ? 'Edit line' : 'New line' }}</h3>
+<label>
+  Name:
+  <input [(ngModel)]="form.name" />
+</label>
+
+<label style="margin-left: 12px;">
+  Status:
+  <select [(ngModel)]="form.status">
+    <option [ngValue]="1">Active</option>
+    <option [ngValue]="2">Locked</option>
+    <option [ngValue]="3">Closed</option>
+  </select>
+</label>
+
+<button style="margin-left: 12px;" (click)="save()">
+  {{ editing ? 'Save' : 'Create' }}
+</button>
+
+<button style="margin-left: 6px;" (click)="cancel()" *ngIf="editing">
+  Cancel
+</button>

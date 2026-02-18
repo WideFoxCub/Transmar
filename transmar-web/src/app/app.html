@@ -1,0 +1,12 @@
+<nav *ngIf="auth.isLoggedIn()"
+     style="display:flex; gap:12px; margin-bottom:12px; align-items:center;">
+  <a routerLink="/products">Products</a>
+  <a routerLink="/lines">Assembly Lines</a>
+  <a routerLink="/workstations">Workstations</a>
+  <a routerLink="/allocations">Allocations</a>
+
+  <span style="flex:1;"></span>
+  <button (click)="logout()">Logout</button>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,48 @@
+<h2>Products</h2>
+
+<div *ngIf="loading">Ładowanie...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error" border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{ p.productId }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.active }}</td>
+      <td>
+        <button (click)="edit(p)">Edit</button>
+        <button (click)="remove(p)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3>{{ editing ? 'Edit product' : 'New product' }}</h3>
+
+<label>
+  Name:
+  <input [(ngModel)]="form.name" />
+</label>
+
+<label style="margin-left: 12px;">
+  Active:
+  <input type="checkbox" [(ngModel)]="form.active" />
+</label>
+
+<button style="margin-left: 12px;" (click)="save()">
+  {{ editing ? 'Save' : 'Create' }}
+</button>
+
+<button style="margin-left: 6px;" (click)="cancel()" *ngIf="editing">
+  Cancel
+</button>

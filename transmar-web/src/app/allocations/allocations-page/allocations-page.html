@@ -1,0 +1,62 @@
+<h2>Allocations</h2>
+
+<div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+  <label>
+    Product:
+    <select [(ngModel)]="selectedProductId" (change)="onProductChanged()">
+      <option *ngFor="let p of products" [ngValue]="p.productId">{{ p.name }}</option>
+    </select>
+  </label>
+
+  <label>
+    Assembly line:
+    <select [(ngModel)]="selectedLineId" (change)="onLineChanged()">
+      <option *ngFor="let l of lines" [ngValue]="l.alassLineId">{{ l.name }}</option>
+    </select>
+  </label>
+
+  <label>
+    Workstation:
+    <select [(ngModel)]="selectedWorkstationId">
+      <option *ngFor="let w of workstations" [ngValue]="w.alwstationId">
+        {{ w.shortName }} - {{ w.name }}
+      </option>
+    </select>
+  </label>
+
+  <button (click)="allocate()" [disabled]="!selectedLineId || !selectedWorkstationId">Allocate</button>
+  <button (click)="removeSelected()" [disabled]="selectedIds.size === 0">Remove selected</button>
+</div>
+
+<div *ngIf="loading">Ładowanie...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="!loading && !error" border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>
+        <input type="checkbox" (change)="toggleAll($any($event.target).checked)" />
+      </th>
+      <th>Sort</th>
+      <th>Workstation</th>
+      <th>Short</th>
+      <th>Product</th>
+      <th>Line</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let r of rows">
+      <td>
+        <input type="checkbox"
+               [checked]="selectedIds.has(r.allocationId)"
+               (change)="toggleRow(r.allocationId, $any($event.target).checked)" />
+      </td>
+      <td>{{ r.sort }}</td>
+      <td>{{ r.workstationName }}</td>
+      <td>{{ r.workstationShortName }}</td>
+      <td>{{ r.product }}</td>
+      <td>{{ r.assemblyLine }}</td>
+    </tr>
+  </tbody>
+</table>
